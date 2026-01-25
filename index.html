@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Be My Valentine 💖</title>
+        <link href="https://fonts.googleapis.com/css2?family=Delius+Unicase:wght@400;700&display=swap" rel="stylesheet">
+        <style>
+            body {
+                margin: 0;
+                font-family: "Delius Unicase", cursive;
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .screen {
+                display: none;
+                text-align: center;
+                padding: 24px;
+                max-width: 400px;
+                background: rgba(255, 255, 255, 0.85);
+                border-radius: 20px;
+                backdrop-filter: blur(6px);
+            }
+
+            .screen.active {
+                display: block;
+            }
+
+            h1 {
+                color: #ff5fa2;
+                margin-bottom: 10px;
+            }
+
+            p {
+                color: #555;
+            }
+
+            img {
+                width: 220px;
+                border-radius: 12px;
+                margin: 15px 0;
+            }
+
+            .buttons {
+                margin-top: 20px;
+            }
+
+            button {
+                background: #ff8acb;
+                border: none;
+                color: white;
+                padding: 12px 22px;
+                margin: 6px;
+                border-radius: 25px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: transform 0.2s, background 0.2s;
+            }
+
+            button:hover {
+                transform: scale(1.05);
+                background: #ff5fa2;
+            }
+
+            .bg-video {
+                position: fixed;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                z-index: -2;
+                opacity: 0;
+                transition: opacity 0.6s ease;
+            }
+
+            .bg-video.active {
+                opacity: 1;
+            }
+
+            .bg-gif {
+                position: fixed;
+                inset: 0;
+                background-image: url("./gifs/sakura.gif");
+                background-size: cover;
+                background-position: center;
+                z-index: -2;
+                opacity: 0;
+                transition: opacity 0.6s ease;
+            }
+
+            .bg-gif.active {
+                opacity: 1;
+            }
+
+            .fixed-img {
+                position: fixed;
+                z-index: 0; 
+                pointer-events: none;
+            }
+
+            .top-left {
+                top:20px;
+                left:350px;
+                transform:rotate(10deg);
+                size: 500px;
+            }
+
+            .top-right {
+                top: 200px;
+                right: 300px;
+                transform:rotate(-20deg);
+                size: 800px;
+            }
+
+            .bottom-right {
+                bottom: 20px;
+                right: 550px;
+                transform:rotate(8deg);
+                size: 1000px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <img src="./gifs/chibi1.jpg" class="fixed-img top-left">
+        <img src="./gifs/chibi2.jpg" class="fixed-img top-right">
+        <img src="./gifs/chibi3.jpg" class="fixed-img bottom-right">
+
+        <video id="bgDefault" class="bg-video active" autoplay loop muted playsinline>
+            <source src="./gifs/rose petals.mp4" type="video/mp4">
+        </video>
+        
+        <!-- Screen 1 -->
+        <div class="screen active" id="screen1">
+            <h1>Hey you 💕</h1>
+            <img src="./gifs/welcome boy.gif" alt="anime shy">
+            <p>I made something just for you...</p>
+            <button onclick="showScreen('screen2')">Click me 🥺</button>
+        </div>
+
+        <!-- Screen 2 -->
+        <div class="screen" id="screen2">
+            <h1>Will you be my Valentine? 💖</h1>
+            <img src="./gifs/shy boy.gif" alt="anime blush">
+            <div class="buttons">
+            <button onclick="showScreen('yesScreen')">Yes 💕</button>
+            <button onclick="showScreen('noScreen')">No 💔</button>
+            </div>
+        </div>
+
+        <!-- NO Screen -->
+        <div class="screen sad" id="noScreen">
+            <h1>Noooo 😭</h1>
+            <img src="./gifs/crying boy.gif" alt="anime cry">
+            <p>I'm upset...</p>
+            <p>My heart hurts...</p>
+            <button onclick="showScreen('screen2')">Go back 🥺</button>
+        </div>
+
+        <!-- YES Screen -->
+        <div class="screen" id="yesScreen">
+            <h1>Yay!! 💕</h1>
+            <img src="./gifs/happy cool boy.gif" alt="anime happy">
+            <p>My Boo boo,<br><br>
+            Loving you feels like home. In a world that never slows down, you are my peace, my favorite thought, my quiet happiness. Every smile of my Honey boo makes my heart feel lighter, and every moment with you feels like a gift I never want to lose.
+            You don’t just hold my hand—you hold my heart. You understand me in ways no one else ever has, and just knowing you’re mine makes everything feel possible👉🏻👈🏻🌝. I don’t need perfect days, as long as I have my Boo boo beside me.
+            This Valentine’s Day, I just want you to know one thing—my heart chose you, and it keeps choosing you, every single day🫀😘.
+            <br><br>Forever yours, Boo Boo🫠</p>
+            <div class="buttons">
+            <button onclick="showScreen('screen2')">Go back</button>
+            <button onclick="showScreen('finalScreen')">One more thing ✨</button>
+            </div>
+        </div>
+
+        <div id="bgFlowers" class="bg-gif"></div>
+        <!-- Final Screen -->
+        <div class="screen" id="finalScreen">
+            <h1>For you 🌸</h1>
+            <img src="./gifs/flower boy.jpg" alt="anime flowers">
+            <p>
+                In this whole wide world,<br>
+                you’re the one I love 💗
+            </p>
+            <button onclick="showScreen('yesScreen')">Go back</button>
+        </div>
+        
+
+        <script>
+            function showScreen(id) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            document.getElementById(id).classList.add('active');
+
+            const defaultBg = document.getElementById("bgDefault");
+            const flowerBg = document.getElementById("bgFlowers");
+
+            if (id === "finalScreen") {
+                defaultBg.classList.remove("active");
+                flowerBg.classList.add("active");
+            } else {
+                flowerBg.classList.remove("active");
+                defaultBg.classList.add("active");
+            }
+            }
+        </script>
+
+    </body>
+</html>
