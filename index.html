@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Be My Valentine 💖</title>
         <link href="https://fonts.googleapis.com/css2?family=Delius+Unicase:wght@400;700&display=swap" rel="stylesheet">
         <style>
@@ -109,7 +109,7 @@
 
             .top-right {
                 top: 500px;
-                right: 130px;
+                right: 200px;
                 transform:rotate(-20deg);
                 width: 300px;
             }
@@ -119,6 +119,57 @@
                 right: 550px;
                 transform:rotate(8deg);
                 width: 250px;
+            }
+
+            .gift-btn {
+                margin-top: 15px;
+                font-size: 18px;
+                animation: wiggle 1.5s infinite;
+            }
+
+            @keyframes wiggle {
+                0%, 100% { transform: rotate(0); }
+                25% { transform: rotate(-5deg); }
+                75% { transform: rotate(5deg); }
+            }
+
+            .coupon {
+                display: none;
+                margin-top: 20px;
+                padding: 18px;
+                border-radius: 16px;
+                background: linear-gradient(135deg, #ffe6f0, #fff);
+                border: 2px dashed #ff8acb;
+                animation: popIn 0.5s ease forwards;
+            }
+
+            .coupon h2 {
+                color: #ff5fa2;
+                margin-bottom: 10px;
+            }
+
+            .coupon .small {
+                font-size: 0.8rem;
+                opacity: 0.7;
+            }
+
+            @keyframes popIn {
+                from {
+                    transform: scale(0.8);
+                    opacity: 0;
+                }
+                to {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+            }
+
+
+            @media (max-width: 768px) {
+                body {
+                    transform: scale(1.15);
+                    transform-origin: center;
+                }
             }
 
         </style>
@@ -171,16 +222,32 @@
         </div>
 
         <div id="bgFlowers" class="bg-gif"></div>
-        
+
         <div class="screen" id="finalScreen">
             <h1>For you 🌸</h1>
             <img src="./gifs/flower boy.jpg" alt="anime flowers">
+
             <p>
                 In this whole wide world,<br>
                 you’re the one I love 💗
             </p>
+
+            <button class="gift-btn" onclick="openGift()">🎁 Open your gift</button>
+
+            <div id="coupon" class="coupon">
+                <h2>🍦 Ice Cream Date 🍦</h2>
+                <p>
+                This coupon is valid for:<br>
+                <strong>One ice cream date with me</strong> 💕<br><br>
+                Any flavor. Any place.<br>
+                Unlimited smiles guaranteed 😌
+                </p>
+                <p class="small">Redeem anytime, forever 💗</p>
+            </div>
+
             <button onclick="showScreen('yesScreen')">Go back</button>
         </div>
+
         
 
         <script>
@@ -201,11 +268,10 @@
                 defaultBg.classList.add("active");
             }
             }
+            function openGift() {
+                document.getElementById("coupon").style.display = "block";
+            }
         </script>
 
     </body>
 </html>
-
-
-
-
