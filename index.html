@@ -96,29 +96,29 @@
 
             .fixed-img {
                 position: fixed;
-                z-index: 0; 
+                z-index: 1; 
                 pointer-events: none;
             }
 
             .top-left {
-                top: 200px;
-                left: 100px;
+                top: 50px;
+                left: 0px;
                 transform: rotate(10deg);
-                width: 125px;
+                width: 100px;
             }
 
             .top-right {
-                top: 150px;
-                right: 200px;
+                top: 100px;
+                right: 0px;
                 transform: rotate(-20deg);
-                width: 150px;
+                width: 125px;
             }
 
             .bottom-right {
-                bottom: 100px;
-                right: 200px;
+                bottom: 0px;
+                right: 30px;
                 transform: rotate(8deg);
-                width: 125px;
+                width: 90px;
             }
 
             .gift-btn {
@@ -179,12 +179,16 @@
         <img src="./gifs/chibi2.jpg" class="fixed-img top-right">
         <img src="./gifs/chibi3.jpg" class="fixed-img bottom-right">
 
+        <audio id="bg-music" autoplay loop>
+            <source src="./music/Blue - @ykaizzk 🩵 flute version .mp3.mpeg" type="audio/mpeg">
+        </audio>
+
         <video id="bgDefault" class="bg-video active" autoplay loop muted playsinline>
             <source src="./gifs/rose petals.mp4" type="video/mp4">
         </video>
         
         <div class="screen active" id="screen1">
-            <h1>Hey you 💕</h1>
+            <h1>Hey Nami💕</h1>
             <img src="./gifs/welcome boy.gif" alt="anime shy">
             <p>I made something just for you...</p>
             <button onclick="showScreen('screen2')">Click me 🥺</button>
@@ -271,8 +275,11 @@
             function openGift() {
                 document.getElementById("coupon").style.display = "block";
             }
+
+            const music = document.getElementById("bg-music");
+            music.volume = 0.05;
+            
         </script>
 
     </body>
 </html>
-
