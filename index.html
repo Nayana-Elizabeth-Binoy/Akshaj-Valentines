@@ -179,7 +179,7 @@
         <img src="./gifs/chibi2.jpg" class="fixed-img top-right">
         <img src="./gifs/chibi3.jpg" class="fixed-img bottom-right">
 
-        <audio id="bg-music" autoplay loop>
+        <audio id="bg-music" loop>
             <source src="./music/Blue - @ykaizzk 🩵 flute version .mp3.mpeg" type="audio/mpeg">
         </audio>
 
@@ -255,31 +255,42 @@
         
 
         <script>
-            function showScreen(id) {
-            document.querySelectorAll('.screen').forEach(screen => {
-                screen.classList.remove('active');
-            });
-            document.getElementById(id).classList.add('active');
-
-            const defaultBg = document.getElementById("bgDefault");
-            const flowerBg = document.getElementById("bgFlowers");
-
-            if (id === "finalScreen") {
-                defaultBg.classList.remove("active");
-                flowerBg.classList.add("active");
-            } else {
-                flowerBg.classList.remove("active");
-                defaultBg.classList.add("active");
-            }
-            }
-            function openGift() {
-                document.getElementById("coupon").style.display = "block";
-            }
-
             const music = document.getElementById("bg-music");
-            music.volume = 0.05;
+            
+            function showScreen(id) {
+                document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+                });
+                
+                document.getElementById(id).classList.add('active');
+
+                const defaultBg = document.getElementById("bgDefault");
+                const flowerBg = document.getElementById("bgFlowers");
+
+                if (id === "finalScreen") {
+                    defaultBg.classList.remove("active");
+                    flowerBg.classList.add("active");
+                }
+                else {
+                    flowerBg.classList.remove("active");
+                    defaultBg.classList.add("active");
+                }
+            }
+            
+            function openGift() {
+                const coupon = document.getElementById("coupon");
+                coupon.style.display = "none";
+                coupon.offsetHeight;
+                coupon.style.display = "block";
+            }
+
+            if (music.paused) {
+                music.volume = 0.05;
+                music.play().catch(() => {});
+            }
             
         </script>
 
     </body>
 </html>
+
