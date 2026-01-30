@@ -175,6 +175,10 @@
         </style>
     </head>
     <body>
+        <button id="musicBtn" onclick="startMusic()" style="position: fixed; top: 15px; left: 15px; z-index: 10; background: #ff8acb; border: none; border-radius: 20px; padding: 8px 14px; color: white; font-size: 14px;">
+            🎶 Play music
+        </button>
+
         <img src="./gifs/chibi1.jpg" class="fixed-img top-left">
         <img src="./gifs/chibi2.jpg" class="fixed-img top-right">
         <img src="./gifs/chibi3.jpg" class="fixed-img bottom-right">
@@ -284,15 +288,20 @@
                 coupon.style.display = "block";
             }
 
-            if (music.paused) {
+            function startMusic() {
+                const music = document.getElementById("bg-music");
                 music.volume = 0.1;
-                music.play().catch(() => {});
-            }
-            
+                music.play().then(() => {
+                    document.getElementById("musicBtn").innerText = "🎶 Music on";
+                }).catch(() => {
+                    alert("Tap again to enable music 💗");
+                });
+            } 
         </script>
 
     </body>
 </html>
+
 
 
 
